@@ -6,6 +6,5 @@ description: Solo is a Jekyll theme that supports single-page websites only, but
 # Build settings
 markdown: kramdown
 exclude: ["README.md"]
-destination: ./
 sass:
   style: compressed
