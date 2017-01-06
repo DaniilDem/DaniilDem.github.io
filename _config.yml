@@ -4,6 +4,7 @@ tag_text: Daniil Demchenko
 description: This it personal website Daniil Demchenko
 
 # Build settings
+repository: "DaniilDem/DaniilDem.github.io"
 markdown: kramdown
 exclude: ["README.md"]
 sass:
