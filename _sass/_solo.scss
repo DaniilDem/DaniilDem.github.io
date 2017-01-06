@@ -116,6 +116,13 @@ hr {
   display: block;
 }
 
+.container img.avatar
+{
+    float: left;
+    padding-right: 15px;
+    padding-top: 7px;
+}
+
 table {
   width: 100%;
   border: 1px solid #ccc;

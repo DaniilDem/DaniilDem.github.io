@@ -1,10 +1,8 @@
 ---
 layout: default
 ---
-
-## Daniil Demchenko
-![Image](https://avatars.githubusercontent.com/DaniilDem?size=150)
-
-My Telegram - [https://telegram.me/DaniilD](@DaniilD)
-My GitHub - [https://github.com/DaniilDem](@DaniilDem)
-My VK - [https://vk.com/id28446365](Daniil Demchenko)
+<img src="https://avatars.githubusercontent.com/DaniilDem?size=150" alt="photos of Daniel" class="avatar">
+Telegram - [@DaniilD](https://telegram.me/DaniilD)  
+GitHub - [@DaniilDem](https://github.com/DaniilDem)  
+Insta - [@daniildeminsta](https://www.instagram.com/daniildeminsta/) 
+VK - [Daniil Demchenko](https://vk.com/id28446365) 
