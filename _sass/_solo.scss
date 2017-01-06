@@ -1,4 +1,4 @@
-@import url(//fonts.googleapis.com/css?family=Inconsolata:400,700|Montserrat:700);
+//@import url(//fonts.googleapis.com/css?family=Inconsolata:400,700|Montserrat:700);
 
 html {
   font: 16px/1.5 Inconsolata, sans-serif;
@@ -41,13 +41,14 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  text-align:center;
+
 }
 
 @media (min-width: 30rem) {
   h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    text-align:center;
   }
 }
 
