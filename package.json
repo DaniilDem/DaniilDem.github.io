@@ -1,0 +1,45 @@
+{
+  "name": "daniil",
+  "version": "1.0.0",
+  "description": "![Image](https://avatars.githubusercontent.com/DaniilDem?size=150)",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniilDem/DaniilDem.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs-simple": "^6.7.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2015-webpack": "^6.4.3",
+    "css-loader": "^0.26.2",
+    "gulp": "latest",
+    "gulp-autoprefixer": "latest",
+    "gulp-concat": "latest",
+    "gulp-cssnano": "latest",
+    "gulp-if": "latest",
+    "gulp-less": "latest",
+    "gulp-livereload": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglify": "latest",
+    "gulp-webpack": "^1.5.0",
+    "instafeed.js": "^1.4.1",
+    "style-loader": "^0.13.2",
+    "uglifyjs-webpack-plugin": "^0.2.1",
+    "webpack": "^2.2.1",
+    "webpack-livereload-plugin": "^0.10.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/DaniilDem/DaniilDem.github.io/issues"
+  },
+  "homepage": "https://github.com/DaniilDem/DaniilDem.github.io#readme"
+}
