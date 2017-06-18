@@ -8,7 +8,6 @@
         resolution: 'thumbnail',
         limit:20
     });
-    feed.run();
 
     var wall = new Freewall("#instafeed");
     wall.reset({
@@ -20,17 +19,22 @@
             wall.fitWidth();
         }
     });
-    wall.fitWidth();
-    // for scroll bar appear;
-    setTimeout(function () {
-        feed.next();
-    }, 500);
-    setTimeout(function () {
-        feed.next();
-    }, 1500);
-    setTimeout(function () {
-        $(window).trigger("resize");
-    }, 2000);
+
+    $(document).ready(function () {
+        feed.run();
+        // for scroll bar appear;
+        setTimeout(function () {
+            feed.next();
+        }, 1000);
+        setTimeout(function () {
+            feed.next();
+        }, 2000);
+        setTimeout(function () {
+            wall.fitWidth();
+            $(window).trigger("resize");
+        }, 3000);
+    });
+
 
 
 })(window, document);
