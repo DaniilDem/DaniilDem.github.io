@@ -12,18 +12,25 @@ a {
 a:hover {
   color: #000;
 }
-.container {
+#container {
   position: relative;
-  text-align: center;
-  z-index: 30;
+  width: 100%;
+  max-width: 1530px;
+  margin: 0 auto;
 }
 #info-block {
-  position: relative;
-  display: inline-block;
-  z-index: 50;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 30px 50px;
+  position: absolute;
+  margin: 20% auto;
+  left: 0;
+  right: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 306px;
+  height: 306px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 25px 48px;
   text-align: center;
+  z-index: 50;
 }
 #info-block h1 {
   margin-top: 0;
@@ -38,11 +45,28 @@ a:hover {
 }
 #instafeed {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
   left: 0;
+  right: 0;
   top: 0;
+  margin: 0 auto;
   z-index: 10;
-  margin: 0;
+}
+#instafeed a {
+  width: 20%;
+  height: 20%;
+}
+#instafeed a img {
+  display: block;
+  width: 100%;
 }
 
 /*# sourceMappingURL=common.css.map */

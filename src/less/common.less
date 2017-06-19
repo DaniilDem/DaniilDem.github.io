@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 @main-color:lighten(#000, 20%);
+@size-mosaic:306px;
 
 body
 {
@@ -19,21 +20,28 @@ a{
 
 }
 
-.container
+#container
 {
   position: relative;
-  text-align: center;
-  z-index: 30;
+  width: 100%;
+  max-width: 5*@size-mosaic;
+  margin: 0 auto;
 }
+
 
 #info-block
 {
-  position: relative;
-  display: inline-block;
-  z-index: 50;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding:30px 50px;
+  position: absolute;
+  margin: 20% auto;
+  left:0;
+  right: 0;
+  box-sizing: border-box;
+  width: @size-mosaic;
+  height: @size-mosaic;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 25px 48px;
   text-align: center;
+  z-index: 50;
 
   h1
   {
@@ -57,9 +65,27 @@ a{
 #instafeed
 {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
   left: 0;
+  right: 0;
   top:0;
+  margin:0 auto;
   z-index: 10;
-  margin: 0;
+
+  a
+  {
+    width: 20%;
+    height: 20%;
+    img
+    {
+      display: block;
+      width: 100%;
+    }
+  }
+
+
+
 }
