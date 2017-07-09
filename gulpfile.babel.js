@@ -7,7 +7,11 @@ const gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     webpack = require('webpack-stream'),
-    gulpif = require('gulp-if');
+    gulpif = require('gulp-if'),
+    path = require('path'),
+    swPrecache = require('sw-precache');
+
+
 
 const appName = 'Daniil.me';
 const cssMinName = 'build.min.css';
@@ -26,6 +30,17 @@ gulp.task('html', function ()
 {
     return gulp.src(pathHtml+'*.html')
         .pipe(livereload());
+});
+
+
+gulp.task('generate-service-worker', callback => {
+    swPrecache.write(path.join(pathRoot, 'sw.js'), {
+        staticFileGlobs: [
+            // track and cache all files that match this pattern
+            pathRoot + '/**/*.{js,html,css,png,jpg,gif}',
+        ],
+        stripPrefix: pathRoot
+    }, callback);
 });
 
 gulp.task('less', function ()
