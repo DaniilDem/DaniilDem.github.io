@@ -34,7 +34,7 @@ gulp.task('html', function ()
 
 
 gulp.task('generate-service-worker', callback => {
-    swPrecache.write(path.join(pathJsDist, 'sw.js'), {
+    swPrecache.write(path.join(pathRoot, 'sw.js'), {
         staticFileGlobs: [
             // track and cache all files that match this pattern
             pathRoot + '/dist/**/*.{js,html,css,png,jpg,gif}',
