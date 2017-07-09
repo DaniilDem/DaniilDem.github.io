@@ -34,10 +34,11 @@ gulp.task('html', function ()
 
 
 gulp.task('generate-service-worker', callback => {
-    swPrecache.write(path.join(pathRoot, 'sw.js'), {
+    swPrecache.write(path.join(pathJsDist, 'sw.js'), {
         staticFileGlobs: [
             // track and cache all files that match this pattern
-            pathRoot + '/**/*.{js,html,css,png,jpg,gif}',
+            pathRoot + '/dist/**/*.{js,html,css,png,jpg,gif}',
+            pathRoot + '*.{js,html,css,png,jpg,gif}',
         ],
         stripPrefix: pathRoot
     }, callback);
@@ -89,6 +90,7 @@ gulp.task('watch', function ()
     gulp.watch([pathCss+'*.css', '!'+pathCss+cssMinName], ['css']);
     gulp.watch([pathHtml+"*.html"], ['html']);
     gulp.watch([pathJs+'**/*.js', '!'+pathJs+jsMinName], ['js']);
+    gulp.watch([pathJs+'sw.js'], ['generate-service-worker']);
 
 });
 
@@ -100,7 +102,7 @@ gulp.task('setRelease', function ()
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['css', 'js']);
+gulp.task('build', ['css', 'js', 'generate-service-worker']);
 gulp.task('release', ['setRelease', 'build']);
 
 
