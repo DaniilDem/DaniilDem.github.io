@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/DaniilDem/DaniilDem.github.io/issues"
   },
-  "homepage": "https://github.com/DaniilDem/DaniilDem.github.io#readme"
+  "homepage": "https://github.com/DaniilDem/DaniilDem.github.io#readme",
+  "dependencies": {
+    "uglify-es": "github:mishoo/UglifyJS2#harmony"
+  }
 }

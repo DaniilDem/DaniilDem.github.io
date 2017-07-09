@@ -4,7 +4,7 @@ const gulp = require('gulp'),
     prefix = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     cssnano = require('gulp-cssnano'),
-    uglify = require('gulp-uglify'),
+    uglify = require('uglify-es'),
     concat = require('gulp-concat'),
     webpack = require('webpack-stream'),
     gulpif = require('gulp-if'),
@@ -72,6 +72,7 @@ gulp.task('js', function ()
 {
     return gulp.src([pathJs+'**/*.js'])
         .pipe(concat(jsMinName))
+        // .pipe(gulpif(release, uglify()))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(pathJsDist))
         .pipe(livereload());
