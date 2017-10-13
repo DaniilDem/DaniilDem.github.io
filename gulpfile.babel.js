@@ -4,14 +4,12 @@ const gulp = require('gulp'),
     prefix = require('gulp-autoprefixer'),
     sourcemaps = require('gulp-sourcemaps'),
     cssnano = require('gulp-cssnano'),
-    uglify = require('uglify-es'),
+    uglify = require('gulp-uglify-es').default,
     concat = require('gulp-concat'),
     webpack = require('webpack-stream'),
     gulpif = require('gulp-if'),
     path = require('path'),
     swPrecache = require('sw-precache');
-
-
 
 const appName = 'Daniil.me';
 const cssMinName = 'build.min.css';
@@ -73,7 +71,7 @@ gulp.task('js', function ()
 {
     return gulp.src([pathJs+'**/*.js'])
         .pipe(concat(jsMinName))
-        // .pipe(gulpif(release, uglify()))
+        .pipe(gulpif(release, uglify()))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(pathJsDist))
         .pipe(livereload());
@@ -102,7 +100,7 @@ gulp.task('setRelease', function ()
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['css', 'js', 'generate-service-worker']);
+gulp.task('build', ['less', 'js', 'generate-service-worker']);
 gulp.task('release', ['setRelease', 'build']);
 
 
