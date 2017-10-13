@@ -16,7 +16,7 @@
             feed.next();
         }, 1000);
 
-        simpleDrag('info-block', -133, -153);
+        hideMe('#hideBtn', '#info-block');
 
     });
 
