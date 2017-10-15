@@ -2,7 +2,7 @@
 
     var feed = new Instafeed({
         clientId: '0122364ea4484220a141d3ad3f26cded',
-        accessToken:'2262603067.1677ed0.955c2166073349f0abd578eb2d08ea1d',
+        accessToken:'2262603067.1677ed0.2b9537624c7f4611be6dc67dc5ddd84e',
         get: 'user',
         userId: '2262603067',
         resolution: 'low_resolution',
