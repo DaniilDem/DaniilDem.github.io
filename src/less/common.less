@@ -8,6 +8,8 @@
   --ink-muted: #a8b0a4;
   --accent: #8fa387;
   --font: "IBM Plex Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --pointer-x: 0;
+  --pointer-y: 0;
 }
 
 *,
@@ -19,7 +21,8 @@
 html,
 body {
   margin: 0;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -29,13 +32,26 @@ body {
     radial-gradient(ellipse 80% 60% at 50% 0%, #2a332a 0%, transparent 55%),
     linear-gradient(180deg, var(--bg-soft), var(--bg));
   -webkit-font-smoothing: antialiased;
+  perspective: 1000px;
 }
 
 img {
   display: block;
 }
 
+.starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
 .page {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
@@ -45,6 +61,21 @@ img {
   gap: 0;
   padding: 2.5rem 1.5rem;
   text-align: center;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+}
+
+.page--parallax {
+  will-change: transform;
+  transform:
+    rotateX(calc(var(--pointer-y) * -8deg))
+    rotateY(calc(var(--pointer-x) * 8deg));
+}
+
+.page--parallax.page--shattering,
+.page--parallax.page--rebuilding {
+  transform: none;
+  will-change: auto;
 }
 
 .page__photo {
@@ -56,6 +87,12 @@ img {
   opacity: 0;
   transform: translateY(12px);
   animation: fade-up 0.7s ease 0.1s forwards;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 .page__name {
@@ -107,6 +144,67 @@ img {
   }
 }
 
+.page--shattering {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page--settled .page__photo,
+.page--settled .page__name,
+.page--settled .page__role,
+.page--settled .page__email,
+.page--rebuilding .page__photo,
+.page--rebuilding .page__name,
+.page--rebuilding .page__role,
+.page--rebuilding .page__email {
+  animation: none;
+  transform: none;
+}
+
+.page--settled .page__photo,
+.page--settled .page__name,
+.page--settled .page__role,
+.page--settled .page__email {
+  opacity: 1;
+}
+
+.shatter-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shatter-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.shatter-shards {
+  position: absolute;
+  inset: 0;
+}
+
+.shatter-shard {
+  position: absolute;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+.shatter-shard--photo {
+  background-repeat: no-repeat;
+}
+
+.shatter-shard__inner {
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page__photo,
   .page__name,
@@ -115,5 +213,10 @@ img {
     animation: none;
     opacity: 1;
     transform: none;
+  }
+
+  .page--parallax {
+    transform: none;
+    will-change: auto;
   }
 }
