@@ -1,50 +1,50 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="This it personal website Daniil Demchenko">
+    <meta name="description" content="Daniil Demchenko — личный сайт">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniil Demchenko</title>
-    <meta name="theme-color" content="#222222">
-    <script type="text/javascript">
+    <meta name="theme-color" content="#1a2318">
+    <script>
         var host = "daniil.me";
         if ((host == window.location.host) && (window.location.protocol != "https:"))
             window.location.protocol = "https";
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/common.css">
-    <!-- Begin Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="apple-icon-precomposed.png" />
-    <!-- End Favicon -->
+    <link rel="apple-touch-icon-precomposed" href="apple-icon-precomposed.png">
     <link rel="manifest" href="manifest.json">
-
 </head>
-
 <body>
-    <div id="container">
-        <div id="info-block">
-            <button type="button" id="hideBtn">-</button>
-            <h1><a href="/">Daniil Demchenko</a></h1>
-            <div id="links">
-                Telegram - <a href="https://telegram.me/DaniilD">@DaniilD</a><br/>
-                GitHub - <a href="https://github.com/DaniilDem">@DaniilDem</a><br/>                
-                Insta - <a href="https://www.instagram.com/daniildeminsta/">@daniildeminsta</a><br/> 
-                Twitter - <a href="https://twitter.com/Daniil_Dem">@Daniil_Dem</a><br/>                
-            </div>
+    <main class="hero">
+        <div class="hero__media" aria-hidden="true">
+            <img
+                class="hero__photo"
+                src="dist/images/portrait.jpg"
+                alt=""
+                width="460"
+                height="460"
+                decoding="async"
+                fetchpriority="high"
+            >
+            <div class="hero__veil"></div>
         </div>
-        <div id="instafeed"></div>
-    </div>
-    <!--BEGIN SCRIPTS-->
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./dist/js/build.min.js"></script>
+
+        <div class="hero__content">
+            <h1 class="hero__brand">Daniil Demchenko</h1>
+            <p class="hero__title">Разработчик</p>
+            <p class="hero__lead">Пишите — отвечу на почту.</p>
+            <a class="hero__email" href="mailto:dan9m@yandex.com">dan9m@yandex.com</a>
+        </div>
+    </main>
 
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
+    <script>
         (function (d, w, c) {
             (w[c] = w[c] || []).push(function () {
                 try {
@@ -73,11 +73,8 @@
         })(document, window, "yandex_metrika_callbacks");
     </script>
     <noscript>
-        <div><img src="https://mc.yandex.ru/watch/41975419" style="position:absolute; left:-9999px;" alt="" /></div>
+        <div><img src="https://mc.yandex.ru/watch/41975419" style="position:absolute; left:-9999px;" alt=""></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
-
-    <!--END SCRIPTS-->
 </body>
-
 </html>
