@@ -19,6 +19,22 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon-precomposed" href="apple-icon-precomposed.png">
     <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                registrations.forEach(function (registration) {
+                    registration.unregister();
+                });
+            });
+        }
+        if (window.caches) {
+            caches.keys().then(function (keys) {
+                keys.forEach(function (key) {
+                    caches.delete(key);
+                });
+            });
+        }
+    </script>
 </head>
 <body>
     <main class="page">

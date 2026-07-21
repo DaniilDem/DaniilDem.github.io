@@ -8,8 +8,7 @@ const gulp = require('gulp'),
     concat = require('gulp-concat'),
     webpack = require('webpack-stream'),
     gulpif = require('gulp-if'),
-    path = require('path'),
-    swPrecache = require('sw-precache');
+    path = require('path');
 
 const appName = 'Daniil.me';
 const cssMinName = 'build.min.css';
@@ -30,17 +29,6 @@ gulp.task('html', function ()
         .pipe(livereload());
 });
 
-
-gulp.task('generate-service-worker', callback => {
-    swPrecache.write(path.join(pathRoot, 'sw.js'), {
-        staticFileGlobs: [
-            // track and cache all files that match this pattern
-            pathRoot + '/dist/**/*.{js,html,css,png,jpg,gif}',
-            pathRoot + '*.{js,html,css,png,jpg,gif}',
-        ],
-        stripPrefix: pathRoot
-    }, callback);
-});
 
 gulp.task('less', function ()
 {
@@ -88,8 +76,6 @@ gulp.task('watch', function ()
     gulp.watch([pathCss+'*.css', '!'+pathCss+cssMinName], ['css']);
     gulp.watch([pathHtml+"*.html"], ['html']);
     gulp.watch([pathJs+'**/*.js', '!'+pathJs+jsMinName], ['js']);
-    gulp.watch([pathJs+'sw.js'], ['generate-service-worker']);
-
 });
 
 
@@ -100,7 +86,7 @@ gulp.task('setRelease', function ()
 });
 
 gulp.task('default', ['build', 'watch']);
-gulp.task('build', ['less', 'js', 'generate-service-worker']);
+gulp.task('build', ['less', 'js']);
 gulp.task('release', ['setRelease', 'build']);
 
 
