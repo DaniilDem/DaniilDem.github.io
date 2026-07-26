@@ -146,8 +146,9 @@
     if (prefersReducedMotion()) return;
 
     var page = document.querySelector('.page');
+    var stage = document.querySelector('.page__stage');
     var root = document.documentElement;
-    if (!page) return;
+    if (!page || !stage) return;
 
     var canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
@@ -177,10 +178,10 @@
       mouseNy = 0;
     }, { passive: true });
 
-    // 3D-наклон только на desktop с мышью — на таче мешает попадать по аватарке
+    // 3D-наклон только у .page__stage (не у ссылок) — на таче мешает попадать по аватарке
     window.setTimeout(function () {
       parallaxEnabled = true;
-      if (canHover) page.classList.add('page--parallax');
+      if (canHover) stage.classList.add('page--parallax');
     }, 1200);
 
     function tick() {
@@ -223,7 +224,8 @@
     }
 
     // Сбрасываем наклон до замера позиций — иначе осколки «уедут»
-    page.classList.remove('page--parallax');
+    var stage = document.querySelector('.page__stage');
+    if (stage) stage.classList.remove('page--parallax');
     void page.offsetWidth;
 
     var targets = [
@@ -712,7 +714,8 @@
       page.classList.remove('page--rebuilding');
       page.classList.add('page--settled');
       if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        page.classList.add('page--parallax');
+        var stageEl = document.querySelector('.page__stage');
+        if (stageEl) stageEl.classList.add('page--parallax');
       }
       isAnimating = false;
     }, 700);

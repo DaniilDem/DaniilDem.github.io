@@ -38,18 +38,50 @@
 </head>
 <body>
     <main class="page">
-        <img
-            class="page__photo"
-            src="dist/images/portrait.jpg"
-            alt="Daniil Demchenko"
-            width="460"
-            height="460"
-            decoding="async"
-            fetchpriority="high"
-        >
-        <h1 class="page__name">Daniil Demchenko</h1>
-        <p class="page__role">Software Developer</p>
+        <div class="page__stage">
+            <img
+                class="page__photo"
+                src="dist/images/portrait.jpg"
+                alt="Daniil Demchenko"
+                width="460"
+                height="460"
+                decoding="async"
+                fetchpriority="high"
+            >
+            <h1 class="page__name">Daniil Demchenko</h1>
+            <p class="page__role">Software Developer</p>
+        </div>
         <a class="page__email" href="mailto:dan9m@yandex.com">dan9m@yandex.com</a>
+        <section class="page__support" aria-label="Buy me a coffee">
+            <h2 class="page__support-title">Buy me a coffee</h2>
+            <div class="page__support-actions">
+                <a
+                    class="page__support-link"
+                    href="https://ko-fi.com/daniildemchenko"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >Ko-fi</a>
+                <a
+                    class="page__support-link"
+                    href="https://paypal.me/daniildem"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >PayPal</a>
+                <button
+                    type="button"
+                    class="page__support-copy"
+                    data-address="TS9pUpBy2dYvPwLMz3AGjZj1f7zju8AaqE"
+                >Crypto</button>
+            </div>
+            <p class="page__support-hint">USDT · TRC20</p>
+            <button
+                type="button"
+                class="page__support-address"
+                data-address="TS9pUpBy2dYvPwLMz3AGjZj1f7zju8AaqE"
+                title="Copy address"
+            >TS9pUpBy2dYvPwLMz3AGjZj1f7zju8AaqE</button>
+            <p class="page__support-status" id="support-status" aria-live="polite"></p>
+        </section>
     </main>
 
     <!-- Yandex.Metrika counter -->
@@ -85,6 +117,52 @@
         <div><img src="https://mc.yandex.ru/watch/41975419" style="position:absolute; left:-9999px;" alt=""></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
+    <script>
+        (function () {
+            var triggers = document.querySelectorAll('[data-address]');
+            var status = document.getElementById('support-status');
+            if (!triggers.length || !status) return;
+
+            var timer;
+
+            function showCopied() {
+                status.textContent = 'Copied';
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    status.textContent = '';
+                }, 1600);
+            }
+
+            function fallbackSelect(el) {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+                status.textContent = 'Select and copy address';
+            }
+
+            function copyFrom(el) {
+                var address = el.getAttribute('data-address') || '';
+                if (!address) return;
+
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(address).then(showCopied).catch(function () {
+                        fallbackSelect(el);
+                    });
+                    return;
+                }
+
+                fallbackSelect(el);
+            }
+
+            Array.prototype.forEach.call(triggers, function (el) {
+                el.addEventListener('click', function () {
+                    copyFrom(el);
+                });
+            });
+        })();
+    </script>
     <script defer src="dist/js/space-shatter.js"></script>
 </body>
 </html>

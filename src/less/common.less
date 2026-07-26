@@ -21,8 +21,9 @@
 html,
 body {
   margin: 0;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -61,19 +62,26 @@ img {
   gap: 0;
   padding: 2.5rem 1.5rem;
   text-align: center;
+}
+
+// Parallax only here — email/support stay flat so hit targets match what you see
+.page__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transform-origin: center center;
   transform-style: preserve-3d;
 }
 
-.page--parallax {
+.page__stage.page--parallax {
   will-change: transform;
   transform:
     rotateX(calc(var(--pointer-y) * -8deg))
     rotateY(calc(var(--pointer-x) * 8deg));
 }
 
-.page--parallax.page--shattering,
-.page--parallax.page--rebuilding {
+.page--shattering .page__stage.page--parallax,
+.page--rebuilding .page__stage.page--parallax {
   transform: none;
   will-change: auto;
 }
@@ -119,6 +127,8 @@ img {
 }
 
 .page__email {
+  position: relative;
+  z-index: 2;
   font-size: 1rem;
   font-weight: 500;
   color: var(--ink);
@@ -137,6 +147,101 @@ img {
   }
 }
 
+.page__support {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+  max-width: min(100%, 28rem);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fade-up 0.7s ease 0.58s forwards;
+}
+
+.page__support-title {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--ink-muted);
+}
+
+.page__support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.page__support-link,
+.page__support-copy {
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0.35rem 0;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    outline: none;
+  }
+}
+
+.page__support-hint {
+  margin: 1rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.page__support-address {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0 0;
+  padding: 0.55rem 0.25rem;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  color: var(--ink);
+  text-align: center;
+  word-break: break-all;
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    outline: none;
+  }
+}
+
+.page__support-status {
+  margin: 0.5rem 0 0;
+  min-height: 1.2em;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--ink-muted);
+}
+
 @keyframes fade-up {
   to {
     opacity: 1;
@@ -153,10 +258,12 @@ img {
 .page--settled .page__name,
 .page--settled .page__role,
 .page--settled .page__email,
+.page--settled .page__support,
 .page--rebuilding .page__photo,
 .page--rebuilding .page__name,
 .page--rebuilding .page__role,
-.page--rebuilding .page__email {
+.page--rebuilding .page__email,
+.page--rebuilding .page__support {
   animation: none;
   transform: none;
 }
@@ -164,7 +271,8 @@ img {
 .page--settled .page__photo,
 .page--settled .page__name,
 .page--settled .page__role,
-.page--settled .page__email {
+.page--settled .page__email,
+.page--settled .page__support {
   opacity: 1;
 }
 
@@ -209,13 +317,14 @@ img {
   .page__photo,
   .page__name,
   .page__role,
-  .page__email {
+  .page__email,
+  .page__support {
     animation: none;
     opacity: 1;
     transform: none;
   }
 
-  .page--parallax {
+  .page__stage.page--parallax {
     transform: none;
     will-change: auto;
   }
