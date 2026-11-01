@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Cam — iPhone camera remote for Garmin</title>
+    <meta name="description" content="Take photos and videos with your iPhone from your Garmin watch.">
+    <meta name="theme-color" content="#111111">
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <script>
+        // The Garmin watch app's QR code and "open on phone" link point here.
+        // Fill in a store link and phones on that platform are sent straight to it.
+        var APP_STORE = "";   // e.g. https://apps.apple.com/app/id0000000000
+        var GOOGLE_PLAY = ""; // no Android app yet
+
+        var ua = navigator.userAgent || "";
+        var isIOS = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/.test(ua);
+        if (isIOS && APP_STORE) {
+            location.replace(APP_STORE);
+        } else if (isAndroid && GOOGLE_PLAY) {
+            location.replace(GOOGLE_PLAY);
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #111;
+            color: #eee;
+            font: 17px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            text-align: center;
+        }
+        main { max-width: 420px; padding: 32px 24px; }
+        h1 { margin: 0 0 8px; font-size: 32px; }
+        p { margin: 0 0 24px; color: #aaa; }
+        .store {
+            display: block;
+            margin: 0 0 12px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: #fff;
+            color: #111;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .store.soon { background: #2a2a2a; color: #888; }
+        .note { font-size: 14px; color: #777; }
+        [hidden] { display: none; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Remote Cam</h1>
+    <p>Take photos and videos with your iPhone from your Garmin watch.</p>
+
+    <a id="ios" class="store soon">App Store — coming soon</a>
+    <a id="android" class="store soon">Google Play — coming soon</a>
+
+    <p id="android-note" class="note" hidden>Remote Cam works with iPhone only for now.</p>
+</main>
+<script>
+    function setStore(id, url, label) {
+        var el = document.getElementById(id);
+        if (url) {
+            el.href = url;
+            el.textContent = label;
+            el.className = "store";
+        }
+    }
+    setStore("ios", APP_STORE, "Download on the App Store");
+    setStore("android", GOOGLE_PLAY, "Get it on Google Play");
+
+    // Show only the phone's own store; desktops see both.
+    if (isIOS) {
+        document.getElementById("android").hidden = true;
+    } else if (isAndroid) {
+        document.getElementById("ios").hidden = true;
+        if (!GOOGLE_PLAY) {
+            document.getElementById("android").hidden = true;
+            document.getElementById("android-note").hidden = false;
+        }
+    }
+</script>
+</body>
+</html>
